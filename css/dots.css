@@ -1,0 +1,10 @@
+.dots-wrapper{
+    display: flex;
+    gap: 10px;
+}
+.dot{
+    width: 20px;
+    height: 20px;
+    background-color: blue;
+    border-radius: 50%;
+}
