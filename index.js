@@ -7,6 +7,17 @@ const sliderLine_gap = +(window.getComputedStyle(document.querySelector('.slider
 
 let offset = 0;
 
+function removeActiveFromDots(){
+    array_dots.forEach(dot => dot.classList.remove('dot-active'))
+}
+function setDefaultDot(){
+    default_activeDot.classList.add('dot-active')
+}
+function setDefaultSlide(){
+    sliderLine.style.left = 0
+    offset = 0
+}
+
 document.querySelector('.arrow-to-right').addEventListener('click', () => {
     const slide_width = +(window.getComputedStyle(document.querySelector('.slider-line img')).width.replace('px', ''))
     const active_dot = document.querySelector('.dot-active')
@@ -43,4 +54,10 @@ document.querySelector('.arrow-to-left').addEventListener('click', () => {
     active_dot.classList.remove('dot-active')
     const nextDot = array_dots[active_dot_index-1]
     nextDot.classList.add('dot-active')
+})
+
+window.addEventListener('resize', () => {
+    removeActiveFromDots()
+    setDefaultDot()
+    setDefaultSlide()
 })

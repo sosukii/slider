@@ -1,10 +1,10 @@
 .dots-wrapper{
     display: flex;
-    gap: 10px;
+    gap: max(2.08vw, 2px);
 }
 .dot{
-    width: 20px;
-    height: 20px;
+    width: max(2.7vw, 10px);
+    height: max(2.7vw, 10px);
     background-color: coral;
     opacity: 0.4;
     border-radius: 50%;

@@ -8,7 +8,7 @@
 .arrow-hover div {
     position: relative;
     top: 20px;
-    width: 90px;
+    width: max(6.25vw, 45px);
     height: 10px;
     background-color: #ff7f508f;
     box-shadow: 0 3px 5px rgba(0, 0, 0, .2);
