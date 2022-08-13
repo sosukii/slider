@@ -38,6 +38,7 @@
 .slider-wrapper{
     display: flex;
     box-shadow: 7px 5px 25px 7px coral;
+    border-radius: 10px;
 }
 .slider-container{
     display: flex;
@@ -49,6 +50,7 @@
 }
 
 .slider img{
+    border-radius: 10px;
     width:34.72vw;
     height: 34.72vw;
 }
