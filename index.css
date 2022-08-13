@@ -28,7 +28,7 @@
     justify-content: center;
     gap: 20px;
     position: relative;
-    /* left: -300px; */
+    left: 0;
     /* left: calc(var(--slideWidth) / 2 * -1); */
     /* height: var(--slideHeight); */
     /* width: calc(var(--slideWidth)*3 + 40px); */
