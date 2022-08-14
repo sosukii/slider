@@ -17,45 +17,36 @@ function setDefaultSlide(){
     sliderLine.style.left = 0
     offset = 0
 }
-
-document.querySelector('.arrow-to-right').addEventListener('click', () => {
+function swapTo(rightORleft){
     const slide_width = +(window.getComputedStyle(document.querySelector('.slider-line img')).width.replace('px', ''))
     const active_dot = document.querySelector('.dot-active')
-    console.log(active_dot);
-    offset = offset + (slide_width+sliderLine_gap)
-
-    sliderLine.style.left = -offset + 'px' 
+    
+    offset = rightORleft === 'right'
+        ? offset + (slide_width+sliderLine_gap)
+        : (-offset - (slide_width+sliderLine_gap))
+    
     if(offset > (slide_width*images.length)/2) {
         sliderLine.style.left = 0
         offset = 0
         default_activeDot.classList.add('dot-active')
     }
-
-    const active_dot_index = array_dots.indexOf(active_dot) //3
-
-    active_dot.classList.remove('dot-active')
-    const nextDot = array_dots[active_dot_index+1]
-    nextDot.classList.add('dot-active')
-
-})
-document.querySelector('.arrow-to-left').addEventListener('click', () => {
-    const slide_width = +(window.getComputedStyle(document.querySelector('.slider-line img')).width.replace('px', ''))
-    const active_dot = document.querySelector('.dot-active')
-    offset = offset - (slide_width+sliderLine_gap)
-
-    if(-offset > (slide_width*images.length)/2 ){
-        sliderLine.style.left = 0
-        offset = 0
-        default_activeDot.classList.add('dot-active')
-    }
     sliderLine.style.left = -offset + 'px'
-
+    
     const active_dot_index = array_dots.indexOf(active_dot)
     active_dot.classList.remove('dot-active')
-    const nextDot = array_dots[active_dot_index-1]
-    nextDot.classList.add('dot-active')
-})
+    const nextDot_index = rightORleft === 'right'
+        ?  active_dot_index+1
+        :  active_dot_index-1
+    const nextDot = array_dots[nextDot_index]
+    if(nextDot) nextDot.classList.add('dot-active')
+}
 
+document.querySelector('.arrow-to-right').addEventListener('click', () => {
+    swapTo('right')
+})
+document.querySelector('.arrow-to-left').addEventListener('click', () => {
+   swapTo('left')
+})
 window.addEventListener('resize', () => {
     removeActiveFromDots()
     setDefaultDot()

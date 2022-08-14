@@ -10,6 +10,10 @@
     border-radius: 50%;
     transition: 1s;
 }
+.dot:hover{
+    background-color: #ffb000;
+    cursor: pointer;
+}
 .dot-active{
     opacity: 1;
 }
