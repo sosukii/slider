@@ -7,6 +7,9 @@ const sliderLine_gap = +(window.getComputedStyle(document.querySelector('.slider
 
 let offset = 0;
 
+function returnCurrentSlideWidth(){
+    return +(window.getComputedStyle(document.querySelector('.slider-line img')).width.replace('px', ''))
+}
 function removeActiveFromDots(){
     array_dots.forEach(dot => dot.classList.remove('dot-active'))
 }
@@ -18,7 +21,7 @@ function setDefaultSlide(){
     offset = 0
 }
 function swapTo(rightORleft){
-    const slide_width = +(window.getComputedStyle(document.querySelector('.slider-line img')).width.replace('px', ''))
+    const slide_width = returnCurrentSlideWidth()
     const active_dot = document.querySelector('.dot-active')
     
     offset = rightORleft === 'right'
@@ -41,6 +44,35 @@ function swapTo(rightORleft){
     const nextDot = array_dots[nextDot_index]
     if(nextDot) nextDot.classList.add('dot-active')
 }
+
+function howMuchSlidesListed(baseIndex, clickedIndex){
+    if(baseIndex === clickedIndex) return 0
+    console.log('clickedIndex: ', clickedIndex, ' BaseIndex: ', baseIndex);
+    console.log(clickedIndex > baseIndex ? clickedIndex - baseIndex : baseIndex - clickedIndex);
+    return clickedIndex > baseIndex ? clickedIndex - baseIndex : baseIndex - clickedIndex
+}
+function moveToSlide_byDot(width, direction){
+    offset = direction ==='right'
+        ? offset + width
+        : offset - width
+
+    sliderLine.style.left = -offset + 'px'
+}
+document.querySelector('.dots-wrapper').addEventListener('click', () => {
+    if(!event.target.classList.contains('dot')) return
+
+    const idexOfClickedDot = array_dots.indexOf(event.target)
+    const active_dot = document.querySelector('.dot-active')
+    
+    const countOfSlides = howMuchSlidesListed(array_dots.indexOf(active_dot), idexOfClickedDot)
+    const direction = idexOfClickedDot > array_dots.indexOf(active_dot) ? 'right' : 'left'
+    removeActiveFromDots()
+    event.target.classList.add('dot-active')
+    
+
+    const width = (returnCurrentSlideWidth() + sliderLine_gap) * countOfSlides
+    moveToSlide_byDot(width, direction)
+})
 
 document.querySelector('.arrow-to-right').addEventListener('click', () => {
     swapTo('right')
