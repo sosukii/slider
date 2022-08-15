@@ -23,13 +23,14 @@ function swapTo(rightORleft){
     
     offset = rightORleft === 'right'
         ? offset + (slide_width+sliderLine_gap)
-        : (-offset - (slide_width+sliderLine_gap))
+        : offset - (slide_width+sliderLine_gap)
+        const width_swap = rightORleft === 'right'? offset : -offset
+        if(width_swap > (slide_width*images.length)/2) {
+            sliderLine.style.left = 0
+            offset = 0
+            default_activeDot.classList.add('dot-active')
+        }
     
-    if(offset > (slide_width*images.length)/2) {
-        sliderLine.style.left = 0
-        offset = 0
-        default_activeDot.classList.add('dot-active')
-    }
     sliderLine.style.left = -offset + 'px'
     
     const active_dot_index = array_dots.indexOf(active_dot)
