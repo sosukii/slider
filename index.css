@@ -18,8 +18,6 @@
 }
 
 .slider{
-    /* width: var(--slideWidth); */
-    /* height: var(--slideHeight); */
     margin-top: 50px;
     margin-bottom: 50px;
 }
@@ -29,9 +27,6 @@
     gap: 20px;
     position: relative;
     left: 0;
-    /* left: calc(var(--slideWidth) / 2 * -1); */
-    /* height: var(--slideHeight); */
-    /* width: calc(var(--slideWidth)*3 + 40px); */
     transition: all ease-in-out 1s;
 }
 

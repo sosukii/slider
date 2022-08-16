@@ -47,8 +47,6 @@ function swapTo(rightORleft){
 
 function howMuchSlidesListed(baseIndex, clickedIndex){
     if(baseIndex === clickedIndex) return 0
-    console.log('clickedIndex: ', clickedIndex, ' BaseIndex: ', baseIndex);
-    console.log(clickedIndex > baseIndex ? clickedIndex - baseIndex : baseIndex - clickedIndex);
     return clickedIndex > baseIndex ? clickedIndex - baseIndex : baseIndex - clickedIndex
 }
 function moveToSlide_byDot(width, direction){
